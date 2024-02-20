@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="author" content="Roman Wolf">
+      <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+      <title>RooVision</title>
+      <!--import bootstrap and bootstrap table-->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.2/dist/bootstrap-table.min.css">
+      <!-- custom css import -->
+      <link rel="stylesheet" href="{{ url_for('home_blueprint.static', filename='css/styles.css') }}">
+
+  </head>
+
+  <body>
+  <!-- navigation bar -->
+  {% include "_nav_bar.html" %}
+  <main role="main" class="container">
+
+      <!-- jumbo-tron -->
+      <div class="jumbotron">
+          <h1>RooVision</h1>
+            <p class="lead">This app aims to detect and classify kangaroos, wallabies and wallaroos native to Victoria, Australia.</p>
+
+            <!-- photo upload -->
+            {% include "_image_upload.html" %}
+
+      </div>
+
+      <!-- table with species' names -->
+      <div id="species-table">
+          {% block species_table %}{% endblock %}
+      </div>
+
+      <!-- album of species -->
+      <div id="album">
+          {% block album %}{% endblock %}
+      </div>
+
+      <!-- type="submit" formmethod="post"-->
+      <button id="camera_button" name="cam_btn" class="btn blu-whi mt-2" onclick="toggleCameraState()">Camera on</button>
+      <img id="video_display" src="" width="50%">
+      <script> const videoFeedUrl = "{{ url_for('video_feed_bp.video_feed') }}";
+          console.log(videoFeedUrl)
+      </script>
+      <script src="{{ url_for('home_blueprint.static', filename='js/code.js') }}"></script>
+
+      <div class="container">
+        <form>
+          <div class="form-group mt-2">
+              <label for="rangeInput">Confidence threshold</label>
+              <div style="display: flex; gap: 4px; align-items: center;">
+                  <span>0</span><input type="range" id="rangeInput" style="form-range-track-cursor: pointer;" min="0" max="100" step="5"  value="50"><span>100</span>
+              </div>
+              <p>Value: <span id="demo"></span></p>
+          </div>
+        </form>
+      </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.22.2/dist/bootstrap-table.min.js"></script>
+
+  </body>
+</html>
