@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block body %}
+<h2 class="mt-2">YOLOv9</h2>
+<p>
+The model used is a popular object detection algorithm called YOLO. YOLO stands for You Only Look Once and is a popular object detection algorithm known for its speed and accuracy. It divides an image into a grid and simultaneously predicts bounding boxes and probabilities for each cell. The latest release, version 9, has reduced parameters and computations by 49% and 43% respectively, while still achieving an average accuracy of 0.6% on the MS COCO dataset. The YOLO architecture enables real-time object detection and classification (<a href="https://docs.ultralytics.com/models/yolov9/">Jocher et al., 2024</a>). Although YOLO has been used to detect kangaroo species, it is also suitable for other computer vision tasks such as object segmentation, tracking and posing.
+</p>
+<p>
+YOLOv9 aims to overcome the challenges of information loss inherent in deep neural networks by integrating PGI and the versatile GELAN architecture. This enhances YOLOv9's ability to learn and retain critical information throughout the recognition process, resulting in exceptional accuracy and performance.
+</p>
+<p>
+To address the challenge of information loss in deep learning, YOLOv9 implements Programmable Gradient Information (PGI).  PGI helps preserve essential data throughout the depth of the network, resulting in more reliable gradient generation, better model convergence, and improved performance.</p>
+<p>
+YOLOv9 introduces the Generalised Efficient Layer Aggregation Network (GELAN). GELAN is a strategic architectural advancement that enables YOLOv9 to achieve superior parameter utilisation and computational efficiency.
+</p>
+{% endblock body %}

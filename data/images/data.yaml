@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 7
+names: ['Bridled-nail-tail wallaby', 'Brush-tailed rock-wallaby', 'Eastern grey kangaroo', 'Red kangaroo', 'Red-necked wallaby', 'Swamp wallaby', 'Western grey kangaroo']
+
+roboflow:
+  workspace: projects-8fh8l
+  project: kangaroos-wallaroos-wallabies
+  version: 18
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/projects-8fh8l/kangaroos-wallaroos-wallabies/dataset/18

@@ -9,9 +9,8 @@ from urllib.parse import urlparse
 import aiofiles
 import aiohttp
 
-
 # Set up logging
-logging.basicConfig(filename='../data/download_script.log', level=logging.INFO)
+logging.basicConfig(filename='data/logs/download_log.log', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Set headers for the GET requests
@@ -75,6 +74,19 @@ def read_pickle_dict(file_name):
     return image_url_dict
 
 
+def read_json_image_urls(file_name):
+    """
+    Reads image-URLs from JSON.
+
+    :param str file_name: Name of the file to read (default: 'species_image_ids.json').
+    :return: dict: Loaded dictionary from the JSON file.
+    """
+    with open(file_name, 'r') as file:
+        image_url_dict = json.load(file)
+        image_url_dict = {key: image_url_dict[key] for idx, key in enumerate(image_url_dict) if idx < 100}
+    return image_url_dict
+
+
 async def save_image(session, url, species, i):
     """
     Save images asynchronously.
@@ -91,7 +103,7 @@ async def save_image(session, url, species, i):
             try:
                 resp.raise_for_status()
                 if resp.status == 200:
-                    file_name = f"images/{species.lower().replace(' ', '_')}_{i:03d}.jpg"
+                    file_name = f"data/images/raw/{species.lower().replace(' ', '_')}_{i:03d}.jpg"
 
                     async with aiofiles.open(file_name, mode='wb') as f:
                         await f.write(await resp.read())
@@ -136,7 +148,6 @@ async def download_images(image_url_dict):
     """
     for species, image_urls in image_url_dict.items():
         async with aiohttp.ClientSession(trust_env=True) as session:
-
             original_image_urls = await get_tasks(coroutine=fetch_original_image_url,
                                                   session=session,
                                                   urls=image_urls)
@@ -149,15 +160,25 @@ async def download_images(image_url_dict):
 
 
 if __name__ == '__main__':
+    # Start measuring script execution time
     start = perf_counter()
 
+    # Create a new asyncio event loop
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-    image_url_dict = read_pickle_dict('../../data/pickles/osphranter_image_ids.pkl')
+    # Read image URLs from JSON file
+    image_url_dict = read_json_image_urls('data/json/roo_image_urls.json')
+
+    # Run asynchronous image download tasks
     loop.run_until_complete(download_images(image_url_dict))
 
+    # Stop measuring script execution time
     stop = perf_counter()
+
+    # Calculate elapsed time
     elapsed_time = stop - start
     elapsed_time_minutes = elapsed_time / 60.0
+
+    # Log elapsed time
     logger.info(f"Time taken: {elapsed_time_minutes:.2f} minutes")

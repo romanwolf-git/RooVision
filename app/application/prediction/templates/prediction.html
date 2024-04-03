@@ -1,0 +1,95 @@
+{% extends "index.html" %}
+
+{% block title %}Prediction{% endblock %}
+
+{% block body %}
+<h2 class="mt-2">Detect and Classify a Roo &#129432;</h2>
+<p>Upload a photo or video, set the confidence threshold and overlap, and click Detect.</p>
+
+
+<select id="imageOption" class="form-select" onchange="selectInput()">
+  <option value="upload_image" selected>Upload an image</option>
+  <option value="use_test_image">Use test image</option>
+</select>
+
+<form id="formImageUpload" class="mt-3" action="{{ url_for('pred_bp.upload_image') }}" method="POST" enctype="multipart/form-data">
+<!--    <label class="form-label">Upload a photo or video</label>-->
+    {{ form.hidden_tag() }}
+    {% for error in form.photo.errors %}
+    <span style="color: red">{{ error }}</span>
+    {% endfor %}
+
+    <div class="input-group mb-3">
+        {{ form.photo(class="form-control", id="photo") }}
+        {{ form.submit(class="btn blu-whi") }}
+    </div>
+</form>
+
+<form action="{{ url_for('pred_bp.display_image') }}" method="POST" class="mt-2">
+    <div id="testImages" class="input-group" style="display: none;">
+        <select class="form-select" id="testImagesSelect" name="testImagesSelect">
+            <option selected>Choose...</option>
+            <option value="bridled_nail_tail_wallaby">Bridled nail-tail wallaby</option>
+            <option value="brush_tailed_rock_wallaby">Brush-tailed rock-wallaby</option>
+            <option value="eastern_grey_kangaroo">Eastern grey kangaroo</option>
+            <option value="red_kangaroo">Red kangaroo</option>
+            <option value="red_necked_wallaby">Red-necked wallaby</option>
+            <option value="swamp_wallaby">Swamp wallaby</option>
+            <option value="western_grey_kangaroo">Western grey kangaroo</option>
+        </select>
+        <button class="btn btn-outline-secondary blu-whi" type="submit">Display</button>
+    </div>
+</form>
+
+{% if img_name %}
+<div class="mt-2">
+    <form action="{{ url_for('pred_bp.detect_object') }}" method="POST">
+
+        {% if img_type == 'img_upload' %}
+            {% set image_file_name = 'img_upload/' + img_name %}
+        {% elif img_type == 'img_test' %}
+            {% set image_file_name = 'img_test/' + img_name %}
+        {% else %}
+            {% set image_file_name = 'img_output/' + img_name %}
+        {% endif %}
+
+        {% if roo_heading %}
+        <h4>{{ roo_heading }}</h4>
+        {% endif %}
+
+        <img src="{{ url_for('pred_bp.static', filename=image_file_name) }}">
+        <br>
+
+        <!-- Range sliders -->
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-2">
+                    <div class="form-group mt-2">
+                        <label for="confidenceInput">Confidence</label>
+                        <div style="display: flex; gap:4px; align-items: center;">
+                            <span>0</span><input type="range" id="confidenceInput" class="form-range" min="0" max="100" step="5" value="{{ confidence }}"><span>100</span>
+                        </div>
+                        <p>Value: <span id="confidenceValue"></span></p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <div class="form-group mt-2">
+                        <label for="overlapInput">Overlap</label>
+                        <div style="display: flex; gap:4px; align-items: center;">
+                            <span>0</span><input type="range" id="overlapInput" class="form-range" min="0" max="100" step="5" value="{{ overlap }}"><span>100</span>
+                        </div>
+                        <p>Value: <span id="overlapValue"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" style="width:200px" class="btn blu-whi mt-2">Detect</button>
+    </form>
+</div>
+{% endif %}
+
+{% endblock body %}
+
+{% block scripts %}
+<script src="{{ url_for('pred_bp.static', filename='js/code.js') }}"></script>
+{% endblock scripts %}

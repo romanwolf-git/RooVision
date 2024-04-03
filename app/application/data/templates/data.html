@@ -1,0 +1,79 @@
+{% extends "index.html" %}
+
+{% block title %}Data{% endblock %}
+
+{% block body %}
+<h2 class="mt-2">About the Data</h2>
+<p>The model was trained using data from the Atlas of Living Australia &#x1F1E6;&#x1F1FA;. To avoid class imbalance, 100 images of each &#129432; species were used:</p>
+<ul>
+    <li>64 Bridled nail-tail wallaby (<em>Onychogalea fraenata</em>)</li>
+    <li>100 Brush-tailed rock-wallaby (<em>Petrogale penicillata</em>)</li>
+    <li>100 Eastern grey kangaroo (<em>Macropus giganteus</em>)</li>
+    <li>100 Red kangaroo (<em>Ospranter rufus</em>)</li>
+    <li>100 Red-necked wallaby (<em>Notamacropus rufogriseus</em>)</li>
+    <li>100 Swamp wallaby (<em>Wallabia bicolor</em>)</li>
+    <li>100 Western grey kangaroo (<em>Macropus fuliginosus</em>)</li>
+    <li>100 background images</li>
+</ul>
+<p>Unfortunately there are not many images of the bridled nail-tail wallaby (<em>Onychogalea fraenata</em>) in the database, so there are only 64 images of this species in the dataset.</p>
+<p>A critical aspect of this dataset is that it is not always certain that the animal in the image is the species indicated. As the <a href="https://www.ala.org.au/">Atlas of Living Australia</a> is an open source database, anyone can upload images and incorrectly identify species. Where obvious errors have been made, images have been removed from the dataset and replaced.</p>
+<p>It is also important to note that some of the images in the database have found species in regions where they are not expected to occur. The decision on which species to include in the dataset is therefore based on information from the <a href="https://biodiversity.org.au/afd/search/names/">Australian Department of Climate Change, Energy, Environment and Water</a>.</p>
+<p>The necessary annotation of the images was done on <a href="https://roboflow.com/">Roboflow</a>, which made the process relatively quick and easy. The annotated dataset was downloaded to the local machine for training. The data was split 70%:20%:10% for training, validation, and testing, respectively.</p>
+<p>A notebook for more detailed exploratory data analysis can be found <a href="https://github.com/romanwolf-git/RooVision/blob/main/notebooks/exploratory_data_analysis.ipynb">here</a>.</p>
+
+
+<table data-toggle="table">
+<thead>
+  <tr>
+    <th data-sortable="true" data-field="latin-name">Common Name</th>
+    <th data-sortable="true" data-field="common-name">Latin Name</th>
+    <th data-sortable="true" data-field="images-used">Images used</th>
+    <th data-sortable="true" data-field="annotations">Annotated specimen</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/Western_grey_kangaroo">Western grey kangaroo</a></td>
+    <td>Macropus fuliginosus</td>
+    <td>100</td>
+    <td>128</td>
+  </tr>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/Eastern_grey_kangaroo">Eastern grey kangaroo</a></td>
+    <td>Macropus giganteus</td>
+    <td>100</td>
+    <td>132</td>
+  </tr>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/Red-necked_wallaby">Red-necked wallaby</a></td>
+    <td>Notamacropus rufogriseus</td>
+    <td>100</td>
+    <td>111</td>
+  </tr>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/Bridled_nail-tail_wallaby">Bridled nail-tail wallaby</a></td>
+    <td>Onychogalea fraenata</td>
+    <td>64</td>
+    <td>75</td>
+  </tr>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/Red_kangaroo">Red kangaroo</a></td>
+    <td>Ospranter rufus</td>
+    <td>100</td>
+    <td>135</td>
+  </tr>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/Brush-tailed_rock-wallaby">Brush-tailed rock-wallaby</a></td>
+    <td>Petrogale penicillata</td>
+    <td>100</td>
+    <td>104</td>
+  </tr>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/Swamp_wallaby">Swamp wallaby</a></td>
+    <td>Wallabia bicolor</td>
+    <td>100</td>
+    <td>105</td>
+  </tr>
+</tbody>
+</table>
+{% endblock body %}
