@@ -32,10 +32,10 @@ python wsgi.py
 ```
 4. Click on the link or open a window in your browser at http://127.0.0.1:8080.
 ```
-python data_pipeline.py disaster_response.db
+[[python data_pipeline.py disaster_response.db](http://127.0.0.1:8080)](http://127.0.0.1:8080)
 ```
 5. Navigate to the prediction section and upload an image, set confidence and overlap, and infer the macropod species.
-![Screenshot1](app/app_preview/Screenshot 2024-04-03 at 14-47-23 Prediction.png)
+![Screenshot1](https://github.com/romanwolf-git/RooVision/blob/main/app/app_preview/Screenshot%202024-04-03%20at%2014-47-23%20Prediction.png)
 ## Libraries <a name="libraries"/>
 The project used the 'galah' Python API from the Atlas of Living Australia to retrieve data. To improve download speed and use asynchronous programming, the asyncio, aiofiles and aiohttp libraries were used.
 
