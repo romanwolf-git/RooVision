@@ -32,7 +32,7 @@ python wsgi.py
 ```
 4. Click on the link or open a window in your browser at http://127.0.0.1:8080.
 ```
-[http://127.0.0.1:8080](http://127.0.0.1:8080)
+http://127.0.0.1:8080
 ```
 5. Navigate to the prediction section and upload an image, set confidence and overlap, and infer the macropod species.
 ![Screenshot1](https://github.com/romanwolf-git/RooVision/blob/main/app/app_preview/Screenshot%202024-04-03%20at%2014-47-23%20Prediction.png)
