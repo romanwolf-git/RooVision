@@ -1,8 +1,0 @@
-
-<!-- type="submit" formmethod="post"-->
-<button id="camera_button" name="cam_btn" class="btn blu-whi mt-2" onclick="toggleCameraState()">Camera on</button>
-<img id="video_display" src="" width="50%">
-<script> const videoFeedUrl = "{{ url_for('video_feed_bp.video_feed') }}";
-  console.log(videoFeedUrl)
-</script>
-<script src="{{ url_for('home_blueprint.static', filename='js/code.js') }}"></script>
