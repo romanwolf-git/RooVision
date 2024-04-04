@@ -22,7 +22,7 @@ If you want to run the application on your local machine, follow the installatio
 git clone https://github.com/romanwolf-git/RooVision
 ```
 
-2. Install requirements.txt.
+2. Install `requirements.txt`.
 ```
 pip install -r requirements.txt
 ```
