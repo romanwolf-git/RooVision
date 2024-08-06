@@ -16,7 +16,7 @@ The project aims to detect and classify species of the _Macropodidae_ family nat
 When enjoying Victoria's wildlife, you will often come across species from the Macropodidae family. However, it is relatively difficult for the untrained eye to tell which species you are looking at. The aim of the project is to train an algorithm, which will then be used in an app on the camera of a mobile device, to detect and classify the species of an animal in the family in real time. In other words, the app will help nature lovers understand which "kangaroo" they are seeing in the wild.
 
 ## Installation <a name="installation"/>
-If you want to run the application on your local machine, follow the installation steps below. Otherwise, the application can be accessed from https://roovision-6bnwkndfqa-km.a.run.app/.
+If you want to run the application on your local machine, follow the installation steps below. Otherwise, the application can be accessed from https://roo-vision-e4wxhvraqa-ts.a.run.app/.
 1. Clone repository and change to its directory.
 ```
 git clone https://github.com/romanwolf-git/RooVision
