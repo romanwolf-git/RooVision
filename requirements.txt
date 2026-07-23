@@ -54,8 +54,8 @@ six==1.16.0
 SQLAlchemy==2.0.31
 stack-data==0.6.3
 sympy==1.13.1
-torch==2.8.0
-torchvision==0.23.0
+torch==2.13.0
+torchvision==0.28.0
 tqdm==4.66.4
 traitlets==5.14.3
 typing_extensions==4.12.2
